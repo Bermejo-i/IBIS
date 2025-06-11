@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Menú Principal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light text-center">
+
+<div class="container py-5">
+    <h1 class="mb-4">Menú Principal</h1>
+    <div class="d-grid gap-3 col-12 col-md-6 mx-auto">
+        <a th:href="@{/pagos}" class="btn btn-primary btn-lg">Pagos</a>
+        <a th:href="@{/ventas}" class="btn btn-secondary btn-lg">Ventas</a>
+        <a th:href="@{/alumnos}" class="btn btn-success btn-lg">Alumnos</a>
+        <a th:href="@{/cursos}" class="btn btn-warning btn-lg">Cursos</a>
+        <a th:href="@{/practicas}" class="btn btn-info btn-lg">Prácticas</a>
+        <a th:href="@{/horarios}" class="btn btn-dark btn-lg">Horarios</a>
+        <a th:href="@{/asistencias}" class="btn btn-danger btn-lg">Asistencias</a>
+    </div>
+</div>
+
+</body>
+</html>

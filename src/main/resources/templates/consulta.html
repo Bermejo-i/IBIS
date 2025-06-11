@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Consulta de Pagos</title>
+</head>
+<body>
+<h2>Consulta de Pagos</h2>
+
+<form action="/pagos/consulta" method="get">
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" name="nombre" required />
+  <button type="submit">Buscar</button>
+</form>
+
+<br />
+
+<div th:if="${pagos != null}">
+  <h3>Resultados:</h3>
+  <table border="1">
+    <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Nombre</th>
+      <th>Turno</th>
+      <th>Mes</th>
+      <th>Monto</th>
+      <th>Medio de Pago</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${pagos}">
+      <td th:text="${p.fecha}">Fecha</td>
+      <td th:text="${p.nombre}">Nombre</td>
+      <td th:text="${p.turno}">Turno</td>
+      <td th:text="${p.mes}">Mes</td>
+      <td th:text="${p.monto}">Monto</td>
+      <td th:text="${p.medioPago}">Medio</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
