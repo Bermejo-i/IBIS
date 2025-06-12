@@ -19,22 +19,22 @@ import java.util.Collections;
 public class GoogleSheetsConfig {
 
     @Bean
-    public Sheets sheetsService() throws GeneralSecurityException, IOException {
-        // Cargar el archivo JSON desde /resources
-        InputStream credentialsStream = new ClassPathResource("src/main/resources/credentials.json").getInputStream();
+public Sheets sheetsService() throws Exception {
+        // Cargar desde classpath (funciona en local y en .jar)
+        InputStream credentialsStream = getClass().getClassLoader().getResourceAsStream("credentials.json");
 
-    GoogleCredentials credentials = GoogleCredentials
-        .fromStream(
-            new InputStreamReader(
-                getClass().getClassLoader().getResourceAsStream("credentials.json")
-            )
-        )
-    .createScoped(List.of("https://www.googleapis.com/auth/spreadsheets"));
+        if (credentialsStream == null) {
+            throw new RuntimeException("No se encontró el archivo credentials.json en src/main/resources");
+        }
+
+        GoogleCredentials credentials = GoogleCredentials
+                .fromStream(credentialsStream)
+                .createScoped(Collections.singleton("https://www.googleapis.com/auth/spreadsheets"));
+
         return new Sheets.Builder(
                 GoogleNetHttpTransport.newTrustedTransport(),
-                GsonFactory.getDefaultInstance(),
-                new HttpCredentialsAdapter(credentials))
-                .setApplicationName("Sistema de Pagos IBIS")
-                .build();
+                JacksonFactory.getDefaultInstance(),
+                new HttpCredentialsAdapter(credentials)
+        ).setApplicationName("IBIS").build();
     }
 }
