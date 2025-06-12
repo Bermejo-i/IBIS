@@ -23,9 +23,13 @@ public class GoogleSheetsConfig {
         // Cargar el archivo JSON desde /resources
         InputStream credentialsStream = new ClassPathResource("src/main/resources/credentials.json").getInputStream();
 
-        GoogleCredentials credentials = GoogleCredentials.fromStream(credentialsStream)
-                .createScoped(Collections.singleton(SheetsScopes.SPREADSHEETS));
-
+    GoogleCredentials credentials = GoogleCredentials
+        .fromStream(
+            new InputStreamReader(
+                getClass().getClassLoader().getResourceAsStream("credentials.json")
+            )
+        )
+    .createScoped(List.of("https://www.googleapis.com/auth/spreadsheets"));
         return new Sheets.Builder(
                 GoogleNetHttpTransport.newTrustedTransport(),
                 GsonFactory.getDefaultInstance(),
