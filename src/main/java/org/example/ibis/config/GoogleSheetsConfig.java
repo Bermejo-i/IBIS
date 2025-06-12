@@ -21,7 +21,7 @@ public class GoogleSheetsConfig {
     @Bean
     public Sheets sheetsService() throws GeneralSecurityException, IOException {
         // Cargar el archivo JSON desde /resources
-        InputStream credentialsStream = new ClassPathResource("credentials.json").getInputStream();
+        InputStream credentialsStream = new ClassPathResource("src/main/resources/credentials.json").getInputStream();
 
         GoogleCredentials credentials = GoogleCredentials.fromStream(credentialsStream)
                 .createScoped(Collections.singleton(SheetsScopes.SPREADSHEETS));
