@@ -133,7 +133,7 @@
     <script>
         // Configuración base
         const config = {
-            baseURL: "/pagos/api", // Usar ruta relativa
+            baseURL: "https://ibis-1.onrender.com/api/pagos", // Usar ruta relativa
             endpoints: {
                 turnos: "/turnos",
                 nombres: "/nombres",
@@ -202,7 +202,7 @@
             }
         }
         // Carga de datos desde API
-        const baseURL = '/api/pagos';
+        const baseURL = 'https://ibis-1.onrender.com/api/pagos';
 
         async function cargarTurnos() {
             const turnoSelect = document.getElementById('turno');
